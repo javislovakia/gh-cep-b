@@ -3,17 +3,19 @@ name: Integración continua
 on:
   push:
     branch: [ main ]
+    paths: [ 'hangman-api/**']
   pull_request:
     branches: [ main ]
+    paths: [ 'hangman-api/**']
 
 jobs:
-  audit:
+  buildAndTest:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Build
+      - name: Build and Test
         working-directory: ./hangman-api
         run: |
           npm ci
