@@ -1,0 +1,17 @@
+name: Continuous delivery
+
+on:
+  workflow_dispatch:
+
+jobs:
+  delivery:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Get Docker version
+        run: docker -v
+      - name: Build Docker images
+        working-directory: ./hangman-api
+        run: docker build -t javi/hangman-api:latest .
